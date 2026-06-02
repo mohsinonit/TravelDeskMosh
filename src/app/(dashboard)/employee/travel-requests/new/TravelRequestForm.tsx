@@ -435,10 +435,7 @@ export function TravelRequestForm({ hasDriversLicense }: { hasDriversLicense: bo
     if (step === 2 && services.length === 0) return 'Please select at least one service.'
     if (step === 3) {
       if (services.includes('AGENT_CHOOSES')) {
-        if (!agentForm.origin.trim())      return 'Please enter the departure city.'
-        if (!agentForm.destination.trim()) return 'Please enter the destination.'
-        if (!agentForm.departureDate)      return 'Please select a departure date.'
-        if (!purpose.trim())               return 'Please describe the purpose of your trip.'
+        if (!purpose.trim()) return 'Please describe the purpose of your trip.'
         return ''
       }
       if (services.includes('FLIGHT')) {
@@ -491,9 +488,9 @@ export function TravelRequestForm({ hasDriversLicense }: { hasDriversLicense: bo
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           eventId,
-          origin:      agentForm.origin,
-          destination: agentForm.destination,
-          travelDates: { departureDate: agentForm.departureDate, returnDate: agentForm.returnDate },
+          origin:      'TBD',
+          destination: 'TBD',
+          travelDates: { departureDate: '', returnDate: '' },
           servicesRequested: ['AGENT_CHOOSES'],
           purpose,
           estimatedCostUsd: estimatedCostUsd ? Number(estimatedCostUsd) : undefined,
